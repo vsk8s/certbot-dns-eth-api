@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option java_package = "ch.ethz.vis.dnsapi.grpc";
+
+message RecordOptions {
+    uint32 ttl = 1; // optional, default 600s
+    string isgGroup = 2; // optional, default configured in dnsapi.properties
+    bool externallyViewable = 3; // optional, default false
+}
+
+message CreateARecordRequest {
+    string ip = 1;  // required
+    string ipName = 2; // required
+    string subdomain = 3; // required
+    RecordOptions options = 10; // optional
+}
+
+message DeleteARecordRequest {
+    string ip = 1; // required
+    string hostname = 2; // required
+}
+
+message CreateCNameRecordRequest {
+    string hostname = 1; // required
+    string aliasName = 2; // required
+    string subdomain = 3; // required
+    RecordOptions options = 10; // optional
+}
+
+message DeleteCNameRecordRequest {
+    string alias = 1; // required
+}
+
+message CreateTxtRecordRequest {
+    string value = 1; // required
+    string txtName = 2; // required
+    string subdomain = 3; // required
+    RecordOptions options = 10; // optional
+}
+
+message SearchTxtRecordRequest {
+    string fqName = 1; // required
+}
+
+message DeleteTxtRecordRequest {
+    string value = 1; // required
+    string fqName = 2; // required
+}
+
+message EmptyResponse {}
+
+message TxtResponse {
+    string value = 1; // always set
+    string fqName = 2; // always set
+    RecordOptions options = 3; // always set, isgGroup is not returned
+}
+
+service Dns {
+    rpc CreateARecord (CreateARecordRequest) returns (EmptyResponse);
+    rpc DeleteARecord (DeleteARecordRequest) returns (EmptyResponse);
+
+    rpc CreateCNameRecord (CreateCNameRecordRequest) returns (EmptyResponse);
+    rpc DeleteCNameRecord (DeleteCNameRecordRequest) returns (EmptyResponse);
+
+    rpc CreateTxtRecord (CreateTxtRecordRequest) returns (EmptyResponse);
+
+    // Does not return information about the ISG group the record belongs to, because why not.
+    rpc SearchTxtRecord (SearchTxtRecordRequest) returns (TxtResponse);
+    rpc DeleteTxtRecord (DeleteTxtRecordRequest) returns (EmptyResponse);
+}
