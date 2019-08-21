@@ -36,7 +36,10 @@ class Authenticator(dns_common.DNSAuthenticator):
             'credentials',
             'ETH DNS API Credentials Ini file',
             {
-                'host': 'Hostname and port of the API (e.g. my_api.com:5432)'
+                'host': 'Hostname and port of the API (e.g. my_api.com:5432)',
+                'ca': 'PEM file path of the CA',
+                'cert': 'PEM file path of the client certificate',
+                'key': 'PEM file path of the client private key',
             }
         )
 
@@ -78,8 +81,16 @@ class Authenticator(dns_common.DNSAuthenticator):
             log_common_errors(code)
 
     def _generate_client(self):
-        channel = grpc.insecure_channel(self.credentials.conf('host'))
-        return api_grpc.DnsStub(channel)
+        ca = self.credentials.conf('ca')
+        cert = self.credentials.conf('cert')
+        key = self.credentials.conf('key')
+        with open(ca, 'rb') as cafile, \
+             open(cert, 'rb') as certfile, \
+             open(key, 'rb') as keyfile:
+
+            creds = grpc.ssl_channel_credentials(cafile.read(), keyfile.read(), certfile.read())
+            channel = grpc.secure_channel(self.credentials.conf('host'), creds)
+            return api_grpc.DnsStub(channel)
 
 
 def log_common_errors(e):

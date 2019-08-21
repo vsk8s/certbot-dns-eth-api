@@ -1,6 +1,6 @@
 # certbot-dns-eth-api
 
-Certbot plugin for gRPC ETH DNS API
+Certbot plugin for gRPC ETH DNS API.
 
 ## Configuration
 
@@ -8,6 +8,9 @@ Have a INI configuration file with the API endpoint:
 
 ```ini
 certbot_dns_eth_api:dns_eth_api_host = api.ethz.ch:50051
+certbot_dns_eth_api:dns_eth_api_ca = ca.pem
+certbot_dns_eth_api:dns_eth_api_cert = cert.pem
+certbot_dns_eth_api:dns_eth_api_key = key.pem
 ```
 
 ## Running
