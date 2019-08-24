@@ -9,5 +9,5 @@ Vcs-Browser: https://git.sos.ethz.ch/k8s/certbot-dns-eth-api
 
 Package: python3-certbot-dns-eth
 Architecture: any
-Depends: python3-certbot
+Depends: python3-certbot, python3-grpcio, python3-acme, python3-zope.interface
 Description: ETH Zurich DNS API plugin for certbot

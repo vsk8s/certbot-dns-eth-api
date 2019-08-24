@@ -11,11 +11,11 @@ build:
   stage: build
   before_script:
     - apt update
-    - apt install -y --no-install-recommends python3-certbot
+    - apt install -y --no-install-recommends python3-certbot python3 python3-setuptools
   script:
     - dpkg-buildpackage -b -us -uc
     - mkdir debbuild
-    - mv target/kibana-oss-*.deb debbuild/
+    - mv ../*.deb debbuild/
   artifacts:
     paths:
     - debbuild/*
