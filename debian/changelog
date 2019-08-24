@@ -1,3 +1,9 @@
+python3-certbot-dns-eth (0.1-2) unstable; urgency=medium
+
+  * Fix dependency on new python3-protobuf (requires backports on stretch)
+
+ -- Maximilian Falkenstein <mfalkenstein@sos.ethz.ch>  Sat, 24 Aug 2019 19:35:11 +0200
+
 python3-certbot-dns-eth (0.1-1) unstable; urgency=medium
 
   * Try to fix GRPC deps
