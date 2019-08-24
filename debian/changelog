@@ -1,0 +1,5 @@
+python3-certbot-dns-eth (0.1) unstable; urgency=medium
+
+  * Initial Release
+
+ -- Maximilian Falkenstein <mfalkenstein@sos.ethz.ch>  Sat, 24 Aug 2019 13:12:31 +0200

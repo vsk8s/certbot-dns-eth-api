@@ -1,0 +1,13 @@
+Source: python3-certbot-dns-eth
+Section: utils
+Priority: optional
+Maintainer: Maximilian Falkenstein <mfalkenstein@sos.ethz.ch>
+Build-Depends: debhelper (>=9), python3-certbot, python3, python3-setuptools
+Standards-Version: 3.9.8
+Vcs-Git: https://git.sos.ethz.ch/k8s/certbot-dns-eth-api.git
+Vcs-Browser: https://git.sos.ethz.ch/k8s/certbot-dns-eth-api
+
+Package: python3-certbot-dns-eth
+Architecture: any
+Depends: python3-certbot
+Description: ETH Zurich DNS API plugin for certbot
