@@ -1,7 +1,7 @@
 variables:
   DISTRIBUTION_VER: "buster"
 
-image: docker.git.sos.ethz.ch/isg/debian-ci-base:$DISTRIBUTION_VER
+image: docker.git.sos.ethz.ch/isg/debian-ci-base-int:$DISTRIBUTION_VER
 
 stages:
   - build
