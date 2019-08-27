@@ -53,7 +53,7 @@ class BuildPyCommand (build_py):
 
 setup(
     name = 'certbot-dns-eth-api',
-    version = '0.2',
+    version = '0.2.1',
     description = 'ETH DNS API Authenticator plugin for Certbot',
     url = 'https://git.sos.ethz.ch/k8s/certbot-dns-eth-api',
     entry_points = {
