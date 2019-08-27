@@ -46,9 +46,12 @@ class Authenticator(dns_common.DNSAuthenticator):
     def _perform(self, domain, validation_domain, validation_content):
         split = validation_domain.split('.', 1)
         request = api.CreateTxtRecordRequest()
+        request.options = api.RecordOptions()
         request.value = validation_content
         request.txtName = split[0]
         request.subdomain = split[1]
+        request.options.externallyViewable = True
+        request.options.ttl = 60
 
         logger.debug("Create TXT record for {}".format(validation_domain))
 
