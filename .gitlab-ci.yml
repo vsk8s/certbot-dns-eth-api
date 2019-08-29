@@ -1,5 +1,6 @@
 variables:
   DISTRIBUTION_VER: "buster"
+  CI_APT_PREFIX: "k8s-1.15"
 
 image: docker.git.sos.ethz.ch/isg/debian-ci-base-int:$DISTRIBUTION_VER
 
