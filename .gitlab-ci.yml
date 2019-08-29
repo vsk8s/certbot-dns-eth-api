@@ -25,7 +25,7 @@ deploy_to_apt:
   stage: deploy
   script:
     - echo "Deploying package to $CI_APT_PREFIX prefix and $DISTRIBUTION_VER version"
-    - sudo -u repo aptly repo add $CI_APT_REPO debbuild/*.deb
+    - sudo -u repo aptly repo add $CI_APT_PREFIX debbuild/*.deb
     - sudo -u repo aptly publish update $DISTRIBUTION_VER $CI_APT_PREFIX
   only:
     - tags
