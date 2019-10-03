@@ -10,8 +10,7 @@ message RecordOptions {
 
 message CreateARecordRequest {
     string ip = 1;  // required
-    string ipName = 2; // required
-    string subdomain = 3; // required
+    string domain = 2; // required
     RecordOptions options = 10; // optional
 }
 
@@ -22,8 +21,7 @@ message DeleteARecordRequest {
 
 message CreateCNameRecordRequest {
     string hostname = 1; // required
-    string aliasName = 2; // required
-    string subdomain = 3; // required
+    string domain = 2; // required
     RecordOptions options = 10; // optional
 }
 
@@ -33,8 +31,7 @@ message DeleteCNameRecordRequest {
 
 message CreateTxtRecordRequest {
     string value = 1; // required
-    string txtName = 2; // required
-    string subdomain = 3; // required
+    string domain = 2; // required
     RecordOptions options = 10; // optional
 }
 

@@ -5,3 +5,4 @@ venv
 *.egg-info
 __pycache__
 .pybuild
+dnsapi_pb2*

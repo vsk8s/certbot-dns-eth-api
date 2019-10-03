@@ -44,11 +44,9 @@ class Authenticator(dns_common.DNSAuthenticator):
         )
 
     def _perform(self, domain, validation_domain, validation_content):
-        split = validation_domain.split('.', 1)
         request = api.CreateTxtRecordRequest()
         request.value = validation_content
-        request.txtName = split[0]
-        request.subdomain = split[1]
+        request.domain = validation_domain
         request.options.externallyViewable = True
         request.options.ttl = 60
 
@@ -61,7 +59,7 @@ class Authenticator(dns_common.DNSAuthenticator):
             if code == grpc.StatusCode.NOT_FOUND:
                 logger.error("Unexpected")
             if code == grpc.StatusCode.INVALID_ARGUMENT:
-                logger.error("I failed passing valid arguments. value: '{}', txtName: '{}', subdomain: '{}'".format(request.value, request.txtName, request.subdomain))
+                logger.error("I failed passing valid arguments. value: '{}', domain: '{}'".format(request.value, request.domain))
             log_common_errors(code)
 
 
